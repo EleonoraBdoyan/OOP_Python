@@ -1,0 +1,117 @@
+# Abstract Classes and Methods:
+# Create an abstract class Shape with an abstract method area().
+# Implement concrete classes Circle and Rectangle that inherit from Shape and implement the area() method.
+# Create an instance of each class and print its area.
+import abc
+import math
+
+class Shape(abc.ABC):
+    @abc.abstractmethod
+    def area(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return math.pi * self.radius ** 2
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+circle_obj = Circle(2)
+print(circle_obj.area())
+
+rectangle_obj = Rectangle(2, 3)
+print(rectangle_obj.area())
+
+
+# Class and Static Methods:
+# Create a class Math with class methods add() and multiply(), and a static method square().
+# Implement the methods to perform their respective operations on two numbers.
+# Create a program that uses the Math class to add, multiply, and square some numbers.
+
+
+class Math:
+    @classmethod
+    def add(cls, x, y):
+        return x + y
+    @classmethod
+    def multiple(cls, x, y):
+        return x * y
+    @staticmethod
+    def square(x):
+        return x ** 2
+
+print(Math.add(2, 3))
+print(Math.multiple(2, 3))
+print(Math.square(3))
+
+
+
+Properties:
+# Create a class Person with properties name and age.
+# Implement methods to set and get the values of the properties.
+# Create a program that creates a Person object, sets its name and age, and then prints its values.
+
+
+# Interfaces:
+# Create an interface IAnimal with methods speak() and eat().
+# Implement classes Cat and Dog that implement the IAnimal interface.
+# Create a program that creates objects of each class and calls their speak() and eat() methods.
+import abc
+
+class IAnimal(abc.ABC):
+
+    @abc.abstractmethod
+    def speak(self):
+        pass
+
+    @abc.abstractmethod
+    def eat(self):
+        pass
+
+class Cat(IAnimal):
+
+    def speak(self):
+        print("Meow")
+
+    def eat(self):
+        print("Cat is eating.")
+
+
+class Dog(IAnimal):
+
+    def speak(self):
+        print("Haf")
+
+    def eat(self):
+        print("Dog is eating.")
+
+for i in [Cat(), Dog()]:
+    i.speak()
+    i.eat()
+
+
+# Metaclasses:
+# Create a metaclass MyMeta that prints a message whenever a new class is created.
+# Define a class MyClass that uses the MyMeta metaclass.
+# Create an instance of MyClass and observe the message printed by the MyMeta metaclass.
+
+class MyMeta(type):
+    def __new__(cls, name, bases, attrs):
+        print("New class was created.")
+        return super().__new__(cls, name, bases, attrs)
+
+class MyClass(metaclass=MyMeta):
+        pass
+
+
+obj = MyClass()
+
